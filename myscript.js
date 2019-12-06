@@ -10,7 +10,7 @@ L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_L
 
 	
 // get color depending on Office No value
-	function getColor(d) {
+/*	function getColor(d) {
 			if(d === 'Both'){
 				return '#BDA8BA';
 			}else if(d === 'FFP'){
@@ -19,10 +19,11 @@ L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_L
 				return '#82B2DC';
 			}
 	}
-	
+*/	
+
 	function style(feature) {
 		return {
-			fillColor: getColor(feature.properties.Office),
+			fillColor: '#82B2DC',
 			weight: 2,
 			opacity: 1,
 			color: '#8C8985',
@@ -30,17 +31,25 @@ L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_L
 			fillOpacity: 0.7
 		};
 	}
-	
+
 	
 L.geoJson(bhaCountries, {
 	style: style,
 	onEachFeature: function (feature, layer) {
-		layer.bindTooltip(feature.properties.SOVEREIGNT);
+		var text = feature.properties.SOVEREIGNT;
+		if (feature.properties.Response !== null) {
+			text = feature.properties.SOVEREIGNT + "<br />" + feature.properties.Response + " Regional Response";
+		}
+		layer.bindTooltip(text);
 	}
 }).addTo(map);
 
+L.geoJson(bhaCountriesBorder, {
+	style: style
+}).addTo(map);
 
-var legend = L.control({position: 'topright'});
+//Legend
+/*var legend = L.control({position: 'topright'});
 
 legend.onAdd = function(map) {
   var div = L.DomUtil.create("div", "legend");
@@ -52,4 +61,4 @@ legend.onAdd = function(map) {
 };
 
 legend.addTo(map); 
-
+*/

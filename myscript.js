@@ -83,3 +83,19 @@ geoJson = L.geoJson(bhaCountries, {
 	style: style,
 	onEachFeature: onEachFeature
 }).addTo(map);
+
+
+//Legend
+/*var legend = L.control({position: 'topright'});
+
+legend.onAdd = function(map) {
+  var div = L.DomUtil.create("div", "legend");
+  //div.innerHTML += "<h4>Managed By:</h4>";
+  div.innerHTML += '<i style="background: #f88379"></i><span>FFP</span><br>';
+  div.innerHTML += '<i style="background: #82B2DC"></i><span>OFDA</span><br>';
+  div.innerHTML += '<i style="background: #BDA8BA"></i><span>Both FFP and OFDA</span><br>';
+  return div;
+};
+
+legend.addTo(map); 
+*/
